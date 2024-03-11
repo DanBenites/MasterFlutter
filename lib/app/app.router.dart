@@ -31,9 +31,11 @@ class StackedRouterWeb extends _i5.RootStackRouter {
       );
     },
     HomeViewRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomeViewArgs>(orElse: () => const HomeViewArgs());
       return _i5.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i2.HomeView(),
+        child: _i2.HomeView(key: args.key),
         opaque: true,
         barrierDismissible: false,
       );
@@ -85,14 +87,26 @@ class StartupViewRoute extends _i5.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.HomeView]
-class HomeViewRoute extends _i5.PageRouteInfo<void> {
-  const HomeViewRoute()
+class HomeViewRoute extends _i5.PageRouteInfo<HomeViewArgs> {
+  HomeViewRoute({_i6.Key? key})
       : super(
           HomeViewRoute.name,
           path: '/home-view',
+          args: HomeViewArgs(key: key),
         );
 
   static const String name = 'HomeView';
+}
+
+class HomeViewArgs {
+  const HomeViewArgs({this.key});
+
+  final _i6.Key? key;
+
+  @override
+  String toString() {
+    return 'HomeViewArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -116,10 +130,14 @@ extension RouterStateExtension on _i4.RouterService {
     );
   }
 
-  Future<dynamic> navigateToHomeView(
-      {void Function(_i5.NavigationFailure)? onFailure}) async {
+  Future<dynamic> navigateToHomeView({
+    _i6.Key? key,
+    void Function(_i5.NavigationFailure)? onFailure,
+  }) async {
     return navigateTo(
-      const HomeViewRoute(),
+      HomeViewRoute(
+        key: key,
+      ),
       onFailure: onFailure,
     );
   }
@@ -140,10 +158,14 @@ extension RouterStateExtension on _i4.RouterService {
     );
   }
 
-  Future<dynamic> replaceWithHomeView(
-      {void Function(_i5.NavigationFailure)? onFailure}) async {
+  Future<dynamic> replaceWithHomeView({
+    _i6.Key? key,
+    void Function(_i5.NavigationFailure)? onFailure,
+  }) async {
     return replaceWith(
-      const HomeViewRoute(),
+      HomeViewRoute(
+        key: key,
+      ),
       onFailure: onFailure,
     );
   }

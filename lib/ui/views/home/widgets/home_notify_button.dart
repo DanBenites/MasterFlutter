@@ -1,3 +1,4 @@
+import 'package:filledstacks_academy/extensions/hover_extensions.dart';
 import 'package:flutter/material.dart';
 
 class HomeNotifyButton extends StatelessWidget {
@@ -25,6 +26,6 @@ class HomeNotifyButton extends StatelessWidget {
               color: Colors.black, fontWeight: FontWeight.w700, fontSize: 20),
         ),
       ),
-    );
+    ).showCursorOnHover;
   }
 }
